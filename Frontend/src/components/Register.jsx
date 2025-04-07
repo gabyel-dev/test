@@ -16,16 +16,13 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/register",
-        registerData,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const url = import.meta.env.VITE_URL;
+      const res = await axios.post(`${url}/register`, registerData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       console.log(res.data);
     } catch {
       alert("failed to register");
